@@ -5,7 +5,7 @@
   display: grid;
   margin: 0 10px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr 2fr 2fr 1.5fr;
+  grid-template-rows: auto auto auto;
   gap: 15px 15px;
   justify-items: stretch;
   align-items: stretch;
