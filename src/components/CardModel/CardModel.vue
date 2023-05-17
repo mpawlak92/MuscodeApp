@@ -16,10 +16,6 @@ const props = defineProps({
     type: String,
     default: 'Card title'
   }
-  //   cardPositionStyles: {
-  //     type: Object,
-  //     reequred: true
-  //   }
 })
 </script>
 
