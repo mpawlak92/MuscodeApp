@@ -29,7 +29,7 @@ const aproveNewTask = () => {
 <style lang="scss" scoped>
 .new-task {
   position: relative;
-  border-bottom: 1px solid var(--color-lists-element-underline);
+  border-bottom: 1px solid var(--color-border);
 
   &__input {
     display: flex;
@@ -57,7 +57,7 @@ const aproveNewTask = () => {
     transform: translateY(-50%);
     line-height: 38px;
     font-size: 0.83rem;
-    color: var(--color-text-light);
+    color: var(--color-text);
 
     span {
       position: relative;

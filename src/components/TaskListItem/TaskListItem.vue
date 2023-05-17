@@ -42,7 +42,7 @@ const handleTaskState = (id) => {
   &__task {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--color-lists-element-underline);
+    border-bottom: 1px solid var(--color-border);
   }
   &__label {
     width: 100%;

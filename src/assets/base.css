@@ -3,16 +3,16 @@
   --color-background: #f5f8fa;
   --color-elements-background: #fff;
 
+  --color-table-row: #f5f8fa;
+
   --color-heading: #333;
   --color-text: #384a5c;
-  --color-text-light: rgba(56, 74, 92, 0.6);
 
   --color-btn: #862583;
 
   --color-checkbox-checked: #862583;
   --color-border: #b2b2b2;
   --color-box-shadow: rgba(178, 178, 178, 0.3);
-  --color-lists-element-underline: rgba(178, 178, 178, 0.8);
 }
 
 *,
