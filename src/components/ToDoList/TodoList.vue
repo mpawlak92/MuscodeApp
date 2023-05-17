@@ -1,7 +1,7 @@
 <template>
   <CardModel class="card-model-position" cardTitle="Lista Produktów">
     <template #card-heading>
-      <p class="todo-list__heading">Wykonane: {{ tasksStore.doneTasksCounter }}</p>
+      <p class="todo-list-heading">Wykonane: {{ tasksStore.doneTasksCounter }}</p>
     </template>
     <template #card-content>
       <TaskList />
@@ -26,5 +26,10 @@ const tasksStore = useTasksStore()
 .card-model-position {
   grid-column: 1/ 2;
   grid-row: 2 / 3;
+}
+.todo-list-heading {
+  color: var(--color-heading);
+  font-weight: 500;
+  font-size: 1rem;
 }
 </style>

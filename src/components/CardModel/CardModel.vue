@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__heading-box">
       <h2 class="card__heading">{{ props.cardTitle }}</h2>
-      <slot name="card-heading" class="card__heading"></slot>
+      <slot name="card-heading"></slot>
     </div>
     <slot name="card-content"></slot>
   </div>
@@ -34,6 +34,7 @@ const props = defineProps({
     margin-top: 4px;
   }
   &__heading {
+    color: var(--color-heading);
     font-size: 1rem;
     font-weight: 500;
   }
