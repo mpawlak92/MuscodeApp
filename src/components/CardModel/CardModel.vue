@@ -1,0 +1,45 @@
+<template>
+  <div class="card">
+    <div class="card__heading-box">
+      <h2 class="card__heading">{{ props.cardTitle }}</h2>
+      <slot name="card-heading" class="card__heading"></slot>
+    </div>
+    <slot name="card-content"></slot>
+  </div>
+</template>
+
+<script setup>
+import '../../assets/base.css'
+
+const props = defineProps({
+  cardTitle: {
+    type: String,
+    default: 'Card title'
+  }
+  //   cardPositionStyles: {
+  //     type: Object,
+  //     reequred: true
+  //   }
+})
+</script>
+
+<style lang="scss" scoped>
+.card {
+  width: 100%;
+  padding: 20px 20px;
+  border-radius: 10px;
+  background-color: var(--color-elements-background);
+  box-shadow: 1px 1px 8px 1px var(--color-box-shadow);
+
+  &__heading-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+  &__heading {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+</style>
