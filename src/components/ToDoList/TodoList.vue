@@ -1,5 +1,5 @@
 <template>
-  <CardModel class="card-model-position" cardTitle="Lista Produktów">
+  <CardModel class="card-model-position" cardTitle="Lista todo">
     <template #card-heading>
       <p class="todo-list-heading">Wykonane: {{ tasksStore.doneTasksCounter }}</p>
     </template>
