@@ -9,7 +9,7 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 649,
         price: 1000,
         currency: '$',
-        img_url: '../assets/img1.png'
+        img: 'img1'
       },
       {
         id: 1,
@@ -17,7 +17,7 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 600,
         price: 800,
         currency: '$',
-        img_url: '../assets/img2.png'
+        img: 'img2'
       },
       {
         id: 2,
@@ -25,7 +25,7 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 0,
         price: 8000,
         currency: 'PLN',
-        img_url: '../assets/img3.png'
+        img: 'img3'
       }
     ]
   })
