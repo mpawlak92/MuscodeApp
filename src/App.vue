@@ -5,8 +5,6 @@
   <ToDoList />
   <ProductsList />
   <ProductCard />
-  <ProductCard />
-  <ProductCard />
 </template>
 
 <script setup>
