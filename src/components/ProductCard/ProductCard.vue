@@ -1,15 +1,17 @@
 <template>
   <CardModel
-    v-for="(product, key) in productsStore.products"
-    :key="key"
+    v-for="product in productsStore.products"
+    :key="product.id"
     class="product-card card-model-position"
     :cardTitle="product.name"
+    @click="toggleModalState(product.id)"
   >
     <template #card-content>
       <div v-if="product.salePrice !== 0" class="product-card__sash">
-        -{{ (((product.price % product.salePrice) / product.price) * 100).toFixed(0) }}%
+        -{{ (((product.price - product.salePrice) / product.price) * 100).toFixed(0) }}%
       </div>
       <img class="product-card__img" :src="getImageUrl(product.img)" />
+      <p>{{ isModalVisible }}</p>
       <div class="product-card__sale-price">
         {{
           product.salePrice === 0
@@ -22,17 +24,34 @@
       </div>
     </template>
   </CardModel>
+  <teleport to="#modals">
+    <ProductEditModal
+      v-if="modalIsActive"
+      :productId="productId"
+      @closeModal="toggleModalState(null)"
+    />
+  </teleport>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import ProductEditModal from '../ProductEditModal/ProductEditModal.vue'
 import '../../assets/base.css'
 import CardModel from '../CardModel/CardModel.vue'
 import { useProductsStore } from '@/stores/ProductsStore'
 
+const productsStore = useProductsStore()
+
+const modalIsActive = ref(false)
+const productId = ref(0)
+
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
 }
-const productsStore = useProductsStore()
+function toggleModalState(id) {
+  productId.value = id
+  modalIsActive.value = !modalIsActive.value
+}
 </script>
 
 <style lang="scss" scoped>
