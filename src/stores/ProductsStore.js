@@ -28,5 +28,17 @@ export const useProductsStore = defineStore('productsStore', {
         img: 'img3'
       }
     ]
-  })
+  }),
+  actions: {
+    editProduct(newProduct, id) {
+      Array.from(this.products).forEach((product) => {
+        if (product.id === id) {
+          product.name = newProduct.name
+          product.salePrice = newProduct.salePrice
+          product.price = newProduct.price
+          product.currency = newProduct.currency
+        }
+      })
+    }
+  }
 })
