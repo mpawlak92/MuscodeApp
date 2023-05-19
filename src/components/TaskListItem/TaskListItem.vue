@@ -33,7 +33,6 @@ const props = defineProps({
 const handleTaskState = (id) => {
   tasksStore.changeTaskComplitedState(id)
   tasksStore.updateDoneTasksCounter()
-  // console.log(tasksStore.doneTasksCounter)
 }
 </script>
 
