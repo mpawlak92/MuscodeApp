@@ -1,0 +1,177 @@
+<template>
+  <ModalModel>
+    <template #modalContent>
+      <div class="modal">
+        <div class="modal__head">
+          <h1>Edycja produktu: {{ productToEdit.name }}</h1>
+        </div>
+        <img
+          :src="getImageUrl(productToEdit.img)"
+          alt="it is photof product in circle"
+          class="modal__product-img"
+        />
+
+        <div class="container-for-positioning">
+          <form action="">
+            <label class="modal__form-label" for="product-name">Nazwa produktu</label>
+            <input class="modal__form-input" type="text" id="product-name" v-model="productName" />
+
+            <label class="modal__form-label" for="price">Cena</label>
+            <input class="modal__form-input" type="number" id="price" v-model="producPrice" />
+
+            <label class="modal__form-label" for="sale-price">Promocyjna cena</label>
+            <input
+              class="modal__form-input"
+              type="number"
+              id="sale-price"
+              v-model="productSalePrice"
+            />
+
+            <label class="modal__form-label" for="currency">Waluta</label>
+            <select
+              class="modal__form-input"
+              name="currency"
+              id="currency"
+              v-model="productCurrency"
+            >
+              <option selected>$</option>
+              <option>PLN</option>
+              <option>EUR</option>
+            </select>
+          </form>
+
+          <div class="modal__btns">
+            <BtnModel
+              :content="'Zapisz'"
+              :bgColor="'#862583'"
+              :color="'#fff'"
+              :fontSize="'0.8rem'"
+              :padding="'7px 13px'"
+              :border="'none'"
+              @click="saveNewProductData"
+            />
+            <BtnModel
+              :content="'Anuluj'"
+              :fontSize="'0.8rem'"
+              :padding="'6px 12px'"
+              :margin="'5px 5px 5px 0'"
+              @click="$emit('closeModal')"
+            />
+          </div>
+        </div>
+      </div>
+    </template>
+  </ModalModel>
+</template>
+
+<script setup>
+import BtnModel from '../BtnModel/BtnModel.vue'
+import ModalModel from '../ModalModel/ModalModel.vue'
+import { useProductsStore } from '@/stores/ProductsStore'
+import { ref } from 'vue'
+
+const productsStore = useProductsStore()
+
+const props = defineProps({
+  productId: {
+    type: Number
+  }
+})
+
+const emit = defineEmits(['closeModal'])
+
+let productToEdit
+
+if (productsStore.products[props.productId].id === props.productId) {
+  productToEdit = productsStore.products[props.productId]
+}
+const getImageUrl = (assetName) => {
+  return new URL(`../../assets/${assetName}.png`, import.meta.url).href
+}
+const productName = ref(productToEdit.name)
+const producPrice = ref(productToEdit.price)
+const productSalePrice = ref(productToEdit.salePrice)
+const productCurrency = ref(productToEdit.currency)
+
+const saveNewProductData = () => {
+  const newProduct = {
+    name: productName,
+    salePrice: productSalePrice,
+    price: producPrice,
+    currency: productCurrency
+  }
+  productsStore.editProduct(newProduct, props.productId)
+  emit('closeModal')
+}
+</script>
+
+<style lang="scss" scoped>
+.container-for-positioning {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modal {
+  position: fixed;
+  width: 32vw;
+  height: 100vh;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  &__head {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    font-size: 0.64rem;
+    border-bottom: 4px solid #39428e;
+    padding-left: 10px;
+    h1 {
+      color: var(--color-heading);
+      font-weight: 500;
+    }
+  }
+  &__product-img {
+    display: block;
+    width: 32%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin: 30px auto 25px auto;
+    box-shadow: 1px 1px 4px 4px var(--color-box-shadow);
+  }
+  &__form-label,
+  &__form-input {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    padding-left: 5px;
+  }
+  &__form-label {
+    color: var(--color-heading);
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+  &__form-input {
+    height: 20px;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 15px;
+    margin-top: 8px;
+  }
+  &__form-input:focus {
+    outline-color: transparent;
+    border-bottom: 3px solid var(--color-border);
+  }
+  &__btns {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    border-top: 1px solid var(--color-border);
+    padding: 10px 5px;
+  }
+}
+</style>
