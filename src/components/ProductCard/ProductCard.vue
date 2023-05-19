@@ -8,10 +8,11 @@
   >
     <template #card-content>
       <div v-if="product.salePrice !== 0" class="product-card__sash">
-        -{{
-          (((product.price - product.salePrice) / product.price) * 100).toFixed(
-            0
-          )
+        {{
+          -(
+            ((product.price - product.salePrice) / product.price) *
+            100
+          ).toFixed(0)
         }}%
       </div>
 
