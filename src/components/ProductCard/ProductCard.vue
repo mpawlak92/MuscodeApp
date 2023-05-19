@@ -14,7 +14,13 @@
           )
         }}%
       </div>
-      <img class="product-card__img" :src="getImageUrl(product.img)" />
+
+      <img
+        class="product-card__img"
+        :src="getImageUrl(product.img)"
+        :alt="product.alt"
+      />
+
       <p>{{ isModalVisible }}</p>
       <div class="product-card__sale-price">
         {{

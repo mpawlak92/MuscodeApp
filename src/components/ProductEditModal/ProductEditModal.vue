@@ -7,7 +7,7 @@
         </div>
         <img
           :src="getImageUrl(productToEdit.img)"
-          alt="it is photof product in circle"
+          alt="avatar w postaci zdjęcia edytowanego produktu w okrągłej ramce"
           class="modal__product-img"
         />
 
