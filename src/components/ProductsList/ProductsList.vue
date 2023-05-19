@@ -14,12 +14,37 @@
         <tbody>
           <tr :key="key" v-for="(product, key) in productsStore.products">
             <td class="product-table__id">{{ product.id }}</td>
-            <td class="product-table__name">{{ product.name }}</td>
-            <td class="product-table__slae-price">
-              {{ product.salePrice === 0 ? null : product.salePrice }}
+            <td class="product-table__name">
+              {{
+                product.salePrice === 0 && product.price === 0
+                  ? `
+                  ${product.name} - Brak produktu`
+                  : product.name
+              }}
             </td>
-            <td class="product-table__price">{{ product.price }}</td>
-            <td class="product-table__currency">{{ product.currency }}</td>
+            <td class="product-table__slae-price">
+              {{
+                product.salePrice === 0 && product.price === 0
+                  ? null
+                  : product.salePrice === 0
+                  ? null
+                  : product.salePrice
+              }}
+            </td>
+            <td class="product-table__price">
+              {{
+                product.salePrice === 0 && product.price === 0
+                  ? null
+                  : product.price
+              }}
+            </td>
+            <td class="product-table__currency">
+              {{
+                product.salePrice === 0 && product.price === 0
+                  ? null
+                  : product.currency
+              }}
+            </td>
           </tr>
         </tbody>
       </table>
