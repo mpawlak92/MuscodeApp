@@ -24,7 +24,9 @@
       <p>{{ isModalVisible }}</p>
       <div class="product-card__sale-price">
         {{
-          product.salePrice === 0
+          product.salePrice === 0 && product.price === 0
+            ? 'Brak produktu'
+            : product.salePrice === 0
             ? product.price + ' ' + product.currency
             : product.salePrice + ' ' + product.currency
         }}
