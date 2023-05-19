@@ -82,7 +82,7 @@
 import BtnModel from '../BtnModel/BtnModel.vue'
 import ModalModel from '../ModalModel/ModalModel.vue'
 import { useProductsStore } from '@/stores/ProductsStore'
-import { ref } from 'vue'
+import { reactive, toRefs } from 'vue'
 
 const productsStore = useProductsStore()
 
@@ -102,10 +102,14 @@ if (productsStore.products[props.productId].id === props.productId) {
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
 }
-const productName = ref(productToEdit.name)
-const producPrice = ref(productToEdit.price)
-const productSalePrice = ref(productToEdit.salePrice)
-const productCurrency = ref(productToEdit.currency)
+const state = reactive({
+  productName: productToEdit.name,
+  producPrice: productToEdit.price,
+  productSalePrice: productToEdit.salePrice,
+  productCurrency: productToEdit.currency,
+})
+const { productName, producPrice, productSalePrice, productCurrency } =
+  toRefs(state)
 
 const saveNewProductData = () => {
   const newProduct = {
