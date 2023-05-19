@@ -8,7 +8,11 @@
   >
     <template #card-content>
       <div v-if="product.salePrice !== 0" class="product-card__sash">
-        -{{ (((product.price - product.salePrice) / product.price) * 100).toFixed(0) }}%
+        -{{
+          (((product.price - product.salePrice) / product.price) * 100).toFixed(
+            0
+          )
+        }}%
       </div>
       <img class="product-card__img" :src="getImageUrl(product.img)" />
       <p>{{ isModalVisible }}</p>
@@ -20,7 +24,11 @@
         }}
       </div>
       <div class="product-card__price">
-        {{ product.salePrice === 0 ? null : product.price + ' ' + product.currency }}
+        {{
+          product.salePrice === 0
+            ? null
+            : product.price + ' ' + product.currency
+        }}
       </div>
     </template>
   </CardModel>

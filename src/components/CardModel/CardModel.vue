@@ -14,8 +14,8 @@ import '../../assets/base.css'
 const props = defineProps({
   cardTitle: {
     type: String,
-    default: 'Card title'
-  }
+    default: 'Card title',
+  },
 })
 </script>
 

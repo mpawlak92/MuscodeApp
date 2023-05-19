@@ -13,13 +13,27 @@
 
         <div class="container-for-positioning">
           <form action="">
-            <label class="modal__form-label" for="product-name">Nazwa produktu</label>
-            <input class="modal__form-input" type="text" id="product-name" v-model="productName" />
+            <label class="modal__form-label" for="product-name"
+              >Nazwa produktu</label
+            >
+            <input
+              class="modal__form-input"
+              type="text"
+              id="product-name"
+              v-model="productName"
+            />
 
             <label class="modal__form-label" for="price">Cena</label>
-            <input class="modal__form-input" type="number" id="price" v-model="producPrice" />
+            <input
+              class="modal__form-input"
+              type="number"
+              id="price"
+              v-model="producPrice"
+            />
 
-            <label class="modal__form-label" for="sale-price">Promocyjna cena</label>
+            <label class="modal__form-label" for="sale-price"
+              >Promocyjna cena</label
+            >
             <input
               class="modal__form-input"
               type="number"
@@ -74,8 +88,8 @@ const productsStore = useProductsStore()
 
 const props = defineProps({
   productId: {
-    type: Number
-  }
+    type: Number,
+  },
 })
 
 const emit = defineEmits(['closeModal'])
@@ -98,7 +112,7 @@ const saveNewProductData = () => {
     name: productName,
     salePrice: productSalePrice,
     price: producPrice,
-    currency: productCurrency
+    currency: productCurrency,
   }
   productsStore.editProduct(newProduct, props.productId)
   emit('closeModal')

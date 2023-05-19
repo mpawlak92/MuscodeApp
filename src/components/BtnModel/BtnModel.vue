@@ -6,7 +6,7 @@
       fontSize: fontSize,
       border: border,
       padding: padding,
-      margin: margin
+      margin: margin,
     }"
   >
     {{ props.content }}
@@ -17,32 +17,32 @@
 const props = defineProps({
   content: {
     type: String,
-    default: 'Btn name'
+    default: 'Btn name',
   },
   color: {
     type: String,
-    default: '#384a5c'
+    default: '#384a5c',
   },
   bgColor: {
     type: String,
-    default: '#fff'
+    default: '#fff',
   },
   fontSize: {
     type: String,
-    default: '1rem'
+    default: '1rem',
   },
   border: {
     type: String,
-    default: '1px solid #b2b2b2'
+    default: '1px solid #b2b2b2',
   },
   padding: {
     type: String,
-    default: '5px'
+    default: '5px',
   },
   margin: {
     type: String,
-    default: '5px 5px'
-  }
+    default: '5px 5px',
+  },
 })
 </script>
 

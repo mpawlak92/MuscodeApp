@@ -9,7 +9,7 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 649,
         price: 1000,
         currency: '$',
-        img: 'img1'
+        img: 'img1',
       },
       {
         id: 1,
@@ -17,7 +17,7 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 600,
         price: 800,
         currency: '$',
-        img: 'img2'
+        img: 'img2',
       },
       {
         id: 2,
@@ -25,9 +25,9 @@ export const useProductsStore = defineStore('productsStore', {
         salePrice: 0,
         price: 8000,
         currency: 'PLN',
-        img: 'img3'
-      }
-    ]
+        img: 'img3',
+      },
+    ],
   }),
   actions: {
     editProduct(newProduct, id) {
@@ -39,6 +39,6 @@ export const useProductsStore = defineStore('productsStore', {
           product.currency = newProduct.currency
         }
       })
-    }
-  }
+    },
+  },
 })

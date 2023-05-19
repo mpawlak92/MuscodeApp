@@ -7,7 +7,9 @@
       :id="'task_' + props.id"
       class="tasks-list__checkbox"
     />
-    <label :for="'task_' + props.id" class="tasks-list__label">{{ props.name }}</label>
+    <label :for="'task_' + props.id" class="tasks-list__label">{{
+      props.name
+    }}</label>
   </li>
 </template>
 
@@ -19,16 +21,16 @@ const tasksStore = useTasksStore()
 const props = defineProps({
   id: {
     type: Number,
-    reequred: true
+    reequred: true,
   },
   name: {
     type: String,
-    reequred: true
+    reequred: true,
   },
   completed: {
     type: Boolean,
-    reequred: true
-  }
+    reequred: true,
+  },
 })
 const handleTaskState = (id) => {
   tasksStore.changeTaskComplitedState(id)

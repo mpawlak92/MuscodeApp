@@ -7,7 +7,9 @@
       v-model="newTaskValue"
       required
     />
-    <div class="new-task__placeholder"><span>+</span> Dodaj nowy element checklisty</div>
+    <div class="new-task__placeholder">
+      <span>+</span> Dodaj nowy element checklisty
+    </div>
   </div>
 </template>
 
