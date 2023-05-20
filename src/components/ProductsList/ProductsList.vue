@@ -6,7 +6,7 @@
           <tr>
             <th class="product-table__id">#</th>
             <th class="product-table__name">nazwa</th>
-            <th class="product-table__slae-price">promocyjna cena</th>
+            <th class="product-table__sale-price">promocyjna cena</th>
             <th class="product-table__price">cena</th>
             <th class="product-table__currency">waluta</th>
           </tr>
@@ -22,7 +22,7 @@
                   : product.name
               }}
             </td>
-            <td class="product-table__slae-price">
+            <td class="product-table__sale-price">
               {{
                 product.salePrice === 0 && product.price === 0
                   ? null
@@ -68,7 +68,7 @@ const productsStore = useProductsStore()
 }
 .product-table {
   width: 100%;
-  margin: 10px 0;
+  margin: 12px 0;
   border-collapse: collapse;
   font-size: 0.78rem;
 
@@ -82,8 +82,8 @@ const productsStore = useProductsStore()
 
   th,
   td {
-    padding: 5px 5px;
-    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   thead {
@@ -93,24 +93,30 @@ const productsStore = useProductsStore()
     text-transform: uppercase;
     font-size: 0.71rem;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
   }
 
   &__id {
-    width: 6%;
+    width: 7%;
+    padding-left: 10px;
   }
 
   &__name {
-    width: 42%;
+    width: 43%;
+    padding-left: 8px;
   }
 
   &__sale-price {
     width: 22%;
+    padding-left: 8px;
   }
 
-  &__price,
+  &__price {
+    width: 16%;
+  }
   &__currency {
-    width: 15%;
+    width: 12%;
+    padding-left: 1px;
   }
 }
 </style>
