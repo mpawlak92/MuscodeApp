@@ -1,12 +1,11 @@
 <template>
-  <CardModel class="card-model-position" cardTitle="Lista Produktów">
+  <CardModel
+    class="card-model-position"
+    cardTitle="Lista Produktów"
+    carddescription="table with products list"
+  >
     <template #card-content>
-      <table
-        class="product-table"
-        tabindex="0"
-        role="tablist"
-        aria-label="Table with product list"
-      >
+      <table class="product-table">
         <thead>
           <tr>
             <th

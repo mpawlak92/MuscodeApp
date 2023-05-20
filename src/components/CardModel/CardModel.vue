@@ -1,12 +1,7 @@
 <template>
   <div class="card" tabindex="0" :role="cardRole" :aria-label="cardDescription">
     <div class="card__heading-box">
-      <h2
-        class="card__heading"
-        tabindex="0"
-        role="title"
-        :aria-label="'Card title: ' + props.cardTitle"
-      >
+      <h2 class="card__heading" tabindex="0" aria-label="Card title">
         {{ props.cardTitle }}
       </h2>
       <slot name="card-heading"></slot>
@@ -25,7 +20,6 @@ const props = defineProps({
   },
   cardRole: {
     type: String,
-    default: 'Container',
   },
   cardDescription: {
     type: String,
