@@ -15,9 +15,9 @@
 <script setup>
 import '../../assets/base.css'
 
-import CardModel from '../CardModel/CardModel.vue'
+import CardModel from '@/components/CardModel/CardModel.vue'
 import NewTaskToDo from '@/components/NewTaskToDo/NewTaskToDo.vue'
-import TaskList from '../TaskList/Tasklist.vue'
+import TaskList from '@/components/TaskList/TaskList.vue'
 
 import { useTasksStore } from '../../stores/TasksStore'
 
