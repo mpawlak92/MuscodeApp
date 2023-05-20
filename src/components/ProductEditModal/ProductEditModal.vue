@@ -198,11 +198,12 @@ const saveNewProductData = async () => {
 }
 .modal {
   position: fixed;
-  width: 32vw;
+  width: 100%;
   height: 100vh;
   right: 0;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-elements-background);
   &__head {
     display: flex;
     align-items: center;
@@ -272,6 +273,27 @@ const saveNewProductData = async () => {
     height: 50px;
     border-top: 1px solid var(--color-border);
     padding: 10px 5px;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal {
+    width: 70vw;
+  }
+}
+@media (min-width: 768px) {
+  .modal {
+    width: 50vw;
+  }
+}
+@media (min-width: 1200px) {
+  .modal {
+    width: 40vw;
+  }
+}
+@media (min-width: 1400px) {
+  .modal {
+    width: 32vw;
   }
 }
 </style>

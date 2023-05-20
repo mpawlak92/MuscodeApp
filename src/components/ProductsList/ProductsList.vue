@@ -63,8 +63,7 @@ const productsStore = useProductsStore()
 
 <style lang="scss" scoped>
 .card-model-position {
-  grid-column: 2/ 4;
-  grid-row: 2 / 3;
+  display: none;
 }
 .product-table {
   width: 100%;
@@ -117,6 +116,13 @@ const productsStore = useProductsStore()
   &__currency {
     width: 12%;
     padding-left: 1px;
+  }
+}
+@media (min-width: 660px) {
+  .card-model-position {
+    grid-column: 2/ 4;
+    grid-row: 2 / 3;
+    display: block;
   }
 }
 </style>

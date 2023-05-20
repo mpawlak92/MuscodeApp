@@ -1,14 +1,23 @@
 @import './base.css';
 
 #app {
-  width: 1180px;
-  display: grid;
-  margin: 0 10px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto auto;
-  gap: 15px 15px;
-  justify-items: stretch;
-  align-items: stretch;
-  justify-content: stretch;
-  align-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90vw;
+  margin: 15px auto;
+}
+@media (min-width: 1000px) {
+  #app {
+    width: 1180px;
+    display: grid;
+    margin: 0 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 15px 15px;
+    justify-items: stretch;
+    align-items: stretch;
+    justify-content: stretch;
+    align-content: start;
+  }
 }

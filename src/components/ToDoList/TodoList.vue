@@ -26,12 +26,20 @@ const tasksStore = useTasksStore()
 
 <style lang="scss" scoped>
 .card-model-position {
-  grid-column: 1/ 2;
-  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 400px;
 }
 .todo-list-heading {
   color: var(--color-heading);
   font-weight: 500;
   font-size: 1rem;
+}
+@media (min-width: 1000px) {
+  .card-model-position {
+    grid-column: 1/ 2;
+    grid-row: 2 / 3;
+  }
 }
 </style>

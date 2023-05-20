@@ -72,12 +72,10 @@ function toggleModalState(id) {
 </script>
 
 <style lang="scss" scoped>
-.card-model-position {
-  grid-row: 3 / 4;
-}
 .product-card {
   position: relative;
   width: 100%;
+  max-width: 400px;
   overflow: hidden;
   cursor: pointer;
   transition: scale 0.5s;
@@ -87,10 +85,10 @@ function toggleModalState(id) {
   }
 
   &__sash {
+    display: none;
     position: absolute;
     right: -12%;
     top: 8%;
-    display: flex;
     justify-content: center;
     padding-top: 2px;
     width: 170px;
@@ -117,6 +115,16 @@ function toggleModalState(id) {
     text-align: center;
     margin-top: 5px;
     text-decoration: line-through;
+  }
+}
+@media (min-width: 100px) {
+  .card-model-position {
+    grid-row: 3 / 4;
+  }
+}
+@media (min-width: 350px) {
+  .product-card__sash {
+    display: flex;
   }
 }
 </style>

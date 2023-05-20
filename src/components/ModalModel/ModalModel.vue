@@ -17,11 +17,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   &__inside {
     position: fixed;
-    width: 32vw;
-    height: 100vh;
-    right: 0;
-    top: 0;
-    background-color: var(--color-elements-background);
+    max-width: 100vw;
   }
 }
 </style>

@@ -22,6 +22,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 .card {
   width: 100%;
+  max-width: 820px;
+  margin: 10px;
   padding: 20px 20px;
   border-radius: 10px;
   background-color: var(--color-elements-background);
@@ -37,6 +39,12 @@ const props = defineProps({
     color: var(--color-heading);
     font-size: 1rem;
     font-weight: 500;
+  }
+}
+@media (min-width: 1000px) {
+  .card {
+    max-width: 100%;
+    margin: 0px;
   }
 }
 </style>

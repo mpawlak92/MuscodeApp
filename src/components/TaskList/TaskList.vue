@@ -23,4 +23,5 @@ const tasksStore = useTasksStore()
   padding: 0;
   list-style: none;
 }
+
 </style>
