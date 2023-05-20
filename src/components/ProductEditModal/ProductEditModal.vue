@@ -35,6 +35,7 @@
               type="number"
               id="price"
               v-model="producPrice"
+              @keydown="onlyNumberAllowed"
             />
             <span
               class="modal__form-error"
@@ -51,6 +52,7 @@
               type="number"
               id="sale-price"
               v-model="productSalePrice"
+              @keydown="onlyNumberAllowed"
             />
             <span
               class="modal__form-error"
@@ -147,6 +149,25 @@ const {
 
 const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
 
+const onlyNumberAllowedREGEXP = /[0-9/]/
+
+const onlyNumberAllowed = (e) => {
+    // Don't validate the input if below arrow, delete and backspace keys were pressed
+  if (
+    e.keyCode == 37 ||
+    e.keyCode == 38 ||
+    e.keyCode == 39 ||
+    e.keyCode == 40 ||
+    e.keyCode == 8 ||
+    e.keyCode == 46
+  ) {
+    // Left / Up / Right / Down Arrow, Backspace, Delete keys
+    return
+  }
+  if (!onlyNumberAllowedREGEXP.test(e.key)) {
+    e.preventDefault()
+  }
+}
 const rules = {
   productName: { minLength: minLength(3), required },
   producPrice: {
