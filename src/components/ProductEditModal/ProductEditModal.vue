@@ -194,7 +194,6 @@ const saveNewProductData = async () => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 .modal {
   position: fixed;
@@ -271,14 +270,20 @@ const saveNewProductData = async () => {
     align-items: center;
     width: 100%;
     height: 50px;
-    border-top: 1px solid var(--color-border);
     padding: 10px 5px;
   }
 }
 
 @media (min-width: 576px) {
+  .container-for-positioning {
+    justify-content: space-between;
+  }
+
   .modal {
     width: 70vw;
+    &__btns {
+      border-top: 1px solid var(--color-border);
+    }
   }
 }
 @media (min-width: 768px) {
