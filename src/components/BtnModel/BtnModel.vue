@@ -1,5 +1,6 @@
 <template>
   <button
+    class="btn"
     :style="{
       color: color,
       backgroundColor: bgColor,
@@ -46,4 +47,12 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.btn {
+  cursor: pointer;
+
+  &:hover {
+    transform: scaleY(1.1);
+  }
+}
+</style>
