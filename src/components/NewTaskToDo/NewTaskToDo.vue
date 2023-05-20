@@ -6,10 +6,12 @@
       class="new-task__input"
       v-model="newTaskValue"
       required
+      id="newTask"
+      aria-label="it is field when you can write your new task and aprove it by enter"
     />
-    <div class="new-task__placeholder">
+    <label for="newTask" class="new-task__placeholder">
       <span>+</span> Dodaj nowy element checklisty
-    </div>
+    </label>
   </div>
 </template>
 

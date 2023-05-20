@@ -1,7 +1,14 @@
 <template>
-  <div class="card">
+  <div class="card" tabindex="0" :role="cardRole" :aria-label="cardDescription">
     <div class="card__heading-box">
-      <h2 class="card__heading">{{ props.cardTitle }}</h2>
+      <h2
+        class="card__heading"
+        tabindex="0"
+        role="title"
+        :aria-label="'Card title: ' + props.cardTitle"
+      >
+        {{ props.cardTitle }}
+      </h2>
       <slot name="card-heading"></slot>
     </div>
     <slot name="card-content"></slot>
@@ -16,6 +23,14 @@ const props = defineProps({
     type: String,
     default: 'Card title',
   },
+  cardRole: {
+    type: String,
+    default: 'Container',
+  },
+  cardDescription: {
+    type: String,
+    default: 'It is card with some data inside',
+  },
 })
 </script>
 
@@ -29,6 +44,9 @@ const props = defineProps({
   background-color: var(--color-elements-background);
   box-shadow: 1px 1px 8px 1px var(--color-box-shadow);
 
+  &:focus {
+    border: 1px solid black;
+  }
   &__heading-box {
     display: flex;
     justify-content: space-between;

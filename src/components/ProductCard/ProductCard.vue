@@ -4,7 +4,10 @@
     :key="product.id"
     class="product-card card-model-position"
     :cardTitle="product.name"
+    cardRole="button"
+    cardDescription="It is card with product, you can click it or press enter key for edit product data"
     @click="toggleModalState(product.id)"
+    @keyup.enter="toggleModalState(product.id)"
   >
     <template #card-content>
       <div v-if="product.salePrice !== 0" class="product-card__sash">
@@ -20,10 +23,17 @@
         class="product-card__img"
         :src="getImageUrl(product.img)"
         :alt="product.alt"
+        tabindex="0"
+        role="img"
       />
 
       <p>{{ isModalVisible }}</p>
-      <div class="product-card__sale-price">
+      <div
+        class="product-card__sale-price"
+        tabindex="0"
+        role="contentinfo"
+        aria-label="Product sale price"
+      >
         {{
           product.salePrice === 0 && product.price === 0
             ? 'Brak produktu'
@@ -32,7 +42,12 @@
             : product.salePrice + ' ' + product.currency
         }}
       </div>
-      <div class="product-card__price">
+      <div
+        class="product-card__price"
+        tabindex="0"
+        role="contentinfo"
+        aria-label="Product price"
+      >
         {{
           product.salePrice === 0
             ? null

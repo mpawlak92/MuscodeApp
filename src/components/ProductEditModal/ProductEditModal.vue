@@ -1,14 +1,23 @@
 <template>
   <ModalModel>
     <template #modalContent>
-      <div class="modal">
-        <div class="modal__head">
+      <div
+        class="modal"
+        tabindex="0"
+        aria-label="Ii is modal for edit product informations"
+      >
+        <div
+          class="modal__head"
+          tabindex="0"
+          aria-label="Name of editing product"
+        >
           <h1>Edycja produktu: {{ productToEdit.name }}</h1>
         </div>
         <img
           :src="getImageUrl(productToEdit.img)"
-          alt="avatar w postaci zdjęcia edytowanego produktu w okrągłej ramce"
+          alt="avatar with is a product image in cirlce brder"
           class="modal__product-img"
+          tabindex="0"
         />
 
         <div class="container-for-positioning">
@@ -152,13 +161,14 @@ const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
 const onlyNumberAllowedREGEXP = /[0-9/]/
 
 const onlyNumberAllowed = (e) => {
-    // Don't validate the input if below arrow, delete and backspace keys were pressed
+  // Don't validate the input if below arrow, delete and backspace keys were pressed
   if (
     e.keyCode == 37 ||
     e.keyCode == 38 ||
     e.keyCode == 39 ||
     e.keyCode == 40 ||
     e.keyCode == 8 ||
+    e.keyCode == 9 ||
     e.keyCode == 46
   ) {
     // Left / Up / Right / Down Arrow, Backspace, Delete keys
@@ -255,7 +265,7 @@ const saveNewProductData = async () => {
   &__form-label {
     color: var(--color-heading);
     font-size: 0.8rem;
-    opacity: 0.6;
+    opacity: 0.7;
   }
   &__form-input {
     height: 20px;

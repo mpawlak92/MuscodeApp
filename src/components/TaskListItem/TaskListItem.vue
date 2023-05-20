@@ -6,10 +6,16 @@
       :checked="props.completed"
       :id="'task_' + props.id"
       class="tasks-list__checkbox"
+      role="checkbox"
+      aria-label="it is checkbox, if you finish your task you can press space for check it"
     />
-    <label :for="'task_' + props.id" class="tasks-list__label">{{
-      props.name
-    }}</label>
+    <label
+      :for="'task_' + props.id"
+      class="tasks-list__label"
+      tabindex="0"
+      aria-label="description of your task todo"
+      >{{ props.name }}</label
+    >
   </li>
 </template>
 

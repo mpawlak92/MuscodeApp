@@ -1,20 +1,65 @@
 <template>
   <CardModel class="card-model-position" cardTitle="Lista Produktów">
     <template #card-content>
-      <table class="product-table">
+      <table
+        class="product-table"
+        tabindex="0"
+        role="tablist"
+        aria-label="Table with product list"
+      >
         <thead>
           <tr>
-            <th class="product-table__id">#</th>
-            <th class="product-table__name">nazwa</th>
-            <th class="product-table__sale-price">promocyjna cena</th>
-            <th class="product-table__price">cena</th>
-            <th class="product-table__currency">waluta</th>
+            <th
+              class="product-table__id"
+              tabindex="0"
+              aria-label="table heading with product id"
+            >
+              #
+            </th>
+            <th
+              class="product-table__name"
+              tabindex="0"
+              aria-label="table heading with product name"
+            >
+              nazwa
+            </th>
+            <th
+              class="product-table__sale-price"
+              tabindex="0"
+              aria-label="table heading with product sale price"
+            >
+              promocyjna cena
+            </th>
+            <th
+              class="product-table__price"
+              tabindex="0"
+              aria-label="table heading with product price"
+            >
+              cena
+            </th>
+            <th
+              class="product-table__currency"
+              tabindex="0"
+              aria-label="table heading with currency"
+            >
+              waluta
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr :key="key" v-for="(product, key) in productsStore.products">
-            <td class="product-table__id">{{ product.id }}</td>
-            <td class="product-table__name">
+            <td
+              class="product-table__id"
+              tabindex="0"
+              aria-label="table cell with product id"
+            >
+              {{ product.id }}
+            </td>
+            <td
+              class="product-table__name"
+              tabindex="0"
+              aria-label="table cell with product name"
+            >
               {{
                 product.salePrice === 0 && product.price === 0
                   ? `
@@ -22,7 +67,11 @@
                   : product.name
               }}
             </td>
-            <td class="product-table__sale-price">
+            <td
+              class="product-table__sale-price"
+              tabindex="0"
+              aria-label="table cell with product sale price"
+            >
               {{
                 product.salePrice === 0 && product.price === 0
                   ? null
@@ -31,14 +80,22 @@
                   : product.salePrice
               }}
             </td>
-            <td class="product-table__price">
+            <td
+              class="product-table__price"
+              tabindex="0"
+              aria-label="table cell with product price"
+            >
               {{
                 product.salePrice === 0 && product.price === 0
                   ? null
                   : product.price
               }}
             </td>
-            <td class="product-table__currency">
+            <td
+              class="product-table__currency"
+              tabindex="0"
+              aria-label="table cell with product currency"
+            >
               {{
                 product.salePrice === 0 && product.price === 0
                   ? null

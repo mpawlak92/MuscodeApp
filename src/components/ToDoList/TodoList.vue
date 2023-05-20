@@ -1,7 +1,11 @@
 <template>
   <CardModel class="card-model-position" cardTitle="Lista todo">
     <template #card-heading>
-      <p class="todo-list-heading">
+      <p
+        class="todo-list-heading"
+        tabindex="0"
+        aria-label="Information about nouber of done tasks"
+      >
         Wykonane: {{ tasksStore.doneTasksCounter }}
       </p>
     </template>
