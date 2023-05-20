@@ -22,7 +22,13 @@
               id="product-name"
               v-model="productName"
             />
-
+            <span
+              class="modal__form-error"
+              v-for="(error, index) of v$.productName.$errors"
+              :key="index"
+            >
+              <strong>{{ error.$message }}</strong>
+            </span>
             <label class="modal__form-label" for="price">Cena</label>
             <input
               class="modal__form-input"
@@ -30,7 +36,13 @@
               id="price"
               v-model="producPrice"
             />
-
+            <span
+              class="modal__form-error"
+              v-for="(error, index) of v$.producPrice.$errors"
+              :key="index"
+            >
+              <strong>{{ error.$message }}</strong>
+            </span>
             <label class="modal__form-label" for="sale-price"
               >Promocyjna cena</label
             >
@@ -40,7 +52,13 @@
               id="sale-price"
               v-model="productSalePrice"
             />
-
+            <span
+              class="modal__form-error"
+              v-for="(error, index) of v$.productSalePrice.$errors"
+              :key="index"
+            >
+              <strong>{{ error.$message }}</strong>
+            </span>
             <label class="modal__form-label" for="currency">Waluta</label>
             <select
               class="modal__form-input"
@@ -53,7 +71,9 @@
               <option>EUR</option>
             </select>
           </form>
-
+          <div v-show="validationError" class="modal__save-error">
+            Musisz wypełnic wszystkie pola poprawnie aby zapisać zmiany!
+          </div>
           <div class="modal__btns">
             <BtnModel
               :content="'Zapisz'"
@@ -83,6 +103,14 @@ import BtnModel from '../BtnModel/BtnModel.vue'
 import ModalModel from '../ModalModel/ModalModel.vue'
 import { useProductsStore } from '@/stores/ProductsStore'
 import { reactive, toRefs } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import {
+  helpers,
+  required,
+  integer,
+  minValue,
+  minLength,
+} from '@vuelidate/validators'
 
 const productsStore = useProductsStore()
 
@@ -102,24 +130,61 @@ if (productsStore.products[props.productId].id === props.productId) {
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
 }
-const state = reactive({
+const modalData = reactive({
   productName: productToEdit.name,
   producPrice: productToEdit.price,
   productSalePrice: productToEdit.salePrice,
   productCurrency: productToEdit.currency,
+  validationError: false,
 })
-const { productName, producPrice, productSalePrice, productCurrency } =
-  toRefs(state)
+const {
+  productName,
+  producPrice,
+  productSalePrice,
+  productCurrency,
+  validationError,
+} = toRefs(modalData)
 
-const saveNewProductData = () => {
-  const newProduct = {
-    name: productName,
-    salePrice: productSalePrice,
-    price: producPrice,
-    currency: productCurrency,
+const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
+
+const rules = {
+  productName: { minLength: minLength(3), required },
+  producPrice: {
+    minLength: minLength(1),
+    minValue: minValue(0),
+    integer,
+    required,
+    priceBiggerThanSalePrice: helpers.withMessage(
+      'Price have to be higher than sale price',
+      priceBiggerThanSalePrice
+    ),
+  },
+  productSalePrice: {
+    minLength: minLength(1),
+    minValue: minValue(0),
+    integer,
+    required,
+  },
+}
+
+const v$ = useVuelidate(rules, modalData)
+v$.value.$validate()
+
+const saveNewProductData = async () => {
+  const result = await v$.value.$validate()
+  if (result) {
+    validationError.value = false
+    const newProduct = {
+      name: productName,
+      salePrice: productSalePrice,
+      price: producPrice,
+      currency: productCurrency,
+    }
+    productsStore.editProduct(newProduct, props.productId)
+    emit('closeModal')
+  } else {
+    validationError.value = true
   }
-  productsStore.editProduct(newProduct, props.productId)
-  emit('closeModal')
 }
 </script>
 
@@ -180,14 +245,31 @@ const saveNewProductData = () => {
   }
   &__form-input:focus {
     outline-color: transparent;
-    border-bottom: 3px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+  }
+  &__form-error,
+  &__save-error {
+    display: block;
+    padding-left: 5px;
+    color: red;
+  }
+
+  &__form-error {
+    margin: -8px 10px 12px;
+    width: calc(100% - 20px);
+  }
+  &__save-error {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
   }
   &__btns {
     display: flex;
     align-items: center;
     width: 100%;
     height: 50px;
-
     border-top: 1px solid var(--color-border);
     padding: 10px 5px;
   }
