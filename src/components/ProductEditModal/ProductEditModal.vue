@@ -90,6 +90,9 @@
           <div v-show="validationError" class="modal__save-error">
             Musisz wypełnic wszystkie pola poprawnie aby zapisać zmiany!
           </div>
+          <div v-show="productNotFoundError" class="modal__save-error">
+            Nie znaleziono produktu
+          </div>
 
           <div class="modal__btns">
             <BtnModel
@@ -119,7 +122,7 @@
 import { useProductsStore } from '@/stores/ProductsStore'
 import { reactive, toRefs, ref, onMounted } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
-import { helpers, required, minLength } from '@vuelidate/validators'
+import { helpers, required, minLength, maxLength } from '@vuelidate/validators'
 
 import BtnModel from '@/components/BtnModel/BtnModel.vue'
 import ModalModel from '@/components//ModalModel/ModalModel.vue'
@@ -155,6 +158,7 @@ const modalData = reactive({
   productSalePrice: productToEdit.salePrice,
   productCurrency: productToEdit.currency,
   validationError: false,
+  productNotFoundError: false,
 })
 
 const {
@@ -163,6 +167,7 @@ const {
   productSalePrice,
   productCurrency,
   validationError,
+  productNotFoundError,
 } = toRefs(modalData)
 
 const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
@@ -199,9 +204,17 @@ const rules = {
       'Cena promocyjna nie może przekraczać wartości podstawowej ceny produktu',
       priceBiggerThanSalePrice
     ),
+    maxLengthValue: helpers.withMessage(
+      'Pole może zawierać maksymalnie 15 znaków',
+      maxLength(15)
+    ),
   },
   productSalePrice: {
     required: helpers.withMessage('Pole nie może być puste', required),
+    maxLengthValue: helpers.withMessage(
+      'Pole może zawierać maksymalnie 15 znaków',
+      maxLength(15)
+    ),
   },
 }
 
@@ -210,6 +223,7 @@ v$.value.$validate()
 
 const saveNewProductData = async () => {
   const result = await v$.value.$validate()
+
   if (result) {
     validationError.value = false
 
@@ -220,9 +234,14 @@ const saveNewProductData = async () => {
       currency: productCurrency,
     }
 
-    productsStore.editProduct(newProduct, props.productId)
+    const updated = productsStore.editProduct(newProduct, props.productId)
+    console.log(updated)
 
-    emit('closeModal')
+    if (updated) {
+      emit('closeModal')
+    } else {
+      productNotFoundError.value = true
+    }
   } else {
     validationError.value = true
   }
