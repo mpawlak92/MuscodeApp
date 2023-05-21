@@ -38,9 +38,6 @@ const props = defineProps({
   background-color: var(--color-elements-background);
   box-shadow: 1px 1px 8px 1px var(--color-box-shadow);
 
-  &:focus {
-    border: 1px solid black;
-  }
   &__heading-box {
     display: flex;
     justify-content: space-between;
