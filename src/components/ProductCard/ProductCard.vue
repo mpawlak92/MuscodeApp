@@ -11,12 +11,7 @@
   >
     <template #card-content>
       <div v-if="product.salePrice !== 0" class="product-card__sash">
-        {{
-          -(
-            ((product.price - product.salePrice) / product.price) *
-            100
-          ).toFixed(0)
-        }}%
+        {{ showDiscountPercent(product.salePrice, product.price) }}
       </div>
 
       <img
@@ -35,11 +30,11 @@
         aria-label="Product sale price"
       >
         {{
-          product.salePrice === 0 && product.price === 0
-            ? 'Brak produktu'
-            : product.salePrice === 0
-            ? product.price + ' ' + product.currency
-            : product.salePrice + ' ' + product.currency
+          showProductSalePrice(
+            product.salePrice,
+            product.price,
+            product.currency
+          )
         }}
       </div>
       <div
@@ -49,9 +44,7 @@
         aria-label="Product price"
       >
         {{
-          product.salePrice === 0
-            ? null
-            : product.price + ' ' + product.currency
+          showProductPrice(product.salePrice, product.price, product.currency)
         }}
       </div>
     </template>
@@ -79,6 +72,27 @@ const productsStore = useProductsStore()
 const modalIsActive = ref(false)
 const productId = ref(0)
 
+const showProductSalePrice = (salePrice, price, currency) => {
+  if (salePrice === 0 && price === 0) {
+    return 'Brak produktu'
+  } else if (salePrice === 0) {
+    return price + ' ' + currency
+  } else {
+    return salePrice + ' ' + currency
+  }
+}
+
+const showProductPrice = (salePrice, price, currency) => {
+  if (salePrice === 0) {
+    return null
+  } else {
+    return price + ' ' + currency
+  }
+}
+
+const showDiscountPercent = (salePrice, price) => {
+  return (-((price - salePrice) / price) * 100).toFixed(0) + '%'
+}
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
 }
