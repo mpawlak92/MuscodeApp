@@ -34,14 +34,15 @@ export const useProductsStore = defineStore('productsStore', {
   }),
   actions: {
     editProduct(newProduct, id) {
-      Array.from(this.products).forEach((product) => {
-        if (product.id === id) {
-          product.name = newProduct.name
-          product.salePrice = newProduct.salePrice
-          product.price = newProduct.price
-          product.currency = newProduct.currency
-        }
-      })
+      let product = this.products.find((product) => product.id === id)
+
+      if (product === undefined) return false
+
+      product.name = newProduct.name
+      product.salePrice = newProduct.salePrice
+      product.price = newProduct.price
+      product.currency = newProduct.currency
+      return true
     },
   },
 })
