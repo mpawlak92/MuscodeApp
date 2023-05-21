@@ -71,6 +71,8 @@ const handleTaskState = (id) => {
 
     &:checked::after {
       content: url(../../assets/check.svg);
+      display: block;
+      margin-top: -1px;
     }
     &:hover {
       background-color: var(--color-background);
