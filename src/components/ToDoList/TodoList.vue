@@ -20,7 +20,7 @@
 <script setup>
 import { useTasksStore } from '@/stores/TasksStore'
 
-import '@assets/base.css'
+import '@/assets/base.css'
 
 import CardModel from '@/components/CardModel/CardModel.vue'
 import NewTaskToDo from '@/components/NewTaskToDo/NewTaskToDo.vue'
