@@ -11,7 +11,7 @@
     </template>
 
     <template #card-content>
-      <TaskList />
+      <TasksList />
       <NewTaskToDo />
     </template>
   </CardModel>
@@ -24,7 +24,7 @@ import '@/assets/base.css'
 
 import CardModel from '@/components/CardModel/CardModel.vue'
 import NewTaskToDo from '@/components/NewTaskToDo/NewTaskToDo.vue'
-import TaskList from '@/components/TaskList/TaskList.vue'
+import TasksList from '@/components/TasksList/TasksList.vue'
 
 const tasksStore = useTasksStore()
 </script>

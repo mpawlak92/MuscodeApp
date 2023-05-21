@@ -1,6 +1,6 @@
 <template>
   <ul class="tasks-list">
-    <TaskListItem
+    <TasksListItem
       v-for="task in tasksStore.tasks"
       :key="task.id"
       :id="task.id"
@@ -13,7 +13,7 @@
 <script setup>
 import { useTasksStore } from '@/stores/TasksStore'
 
-import TaskListItem from '@/components//TaskListItem/TaskListItem.vue'
+import TasksListItem from '@/components//TasksListItem/TasksListItem.vue'
 
 const tasksStore = useTasksStore()
 </script>
