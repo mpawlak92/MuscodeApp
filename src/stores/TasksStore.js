@@ -36,6 +36,8 @@ export const useTasksStore = defineStore('tasksStore', {
       Array.from(this.tasks).forEach((task) => {
         if (task.id === id) {
           task.completed = !task.completed
+        } else {
+          return
         }
       })
     },
@@ -62,10 +64,11 @@ export const useTasksStore = defineStore('tasksStore', {
     },
     deleteTask(id) {
       const task = this.tasks.find((task) => task.id === id)
-
+      if (task === undefined) return false
       const taskIndex = this.tasks.indexOf(task)
       this.tasks.splice(taskIndex, 1)
       this.doneTasksCounter--
+      return true
     },
   },
 })

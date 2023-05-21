@@ -18,7 +18,7 @@
     >
     <button
       v-if="currentTaskState"
-      @click="tasksStore.deleteTask(props.id)"
+      @click="deleteTask(props.id)"
       class="tasks-list__delete-btn"
       tabindex="0"
       aria-label="button to delete task, press     enter to delete"
@@ -30,7 +30,9 @@
 import { useTasksStore } from '@/stores/TasksStore'
 
 const tasksStore = useTasksStore()
+
 let currentTaskState = false
+
 const props = defineProps({
   id: {
     type: Number,
@@ -45,7 +47,15 @@ const props = defineProps({
     reequred: true,
   },
 })
+const emit = defineEmits(['deleteTaskError'])
 
+const deleteTask = (id) => {
+  const isError = tasksStore.deleteTask(id)
+
+  if (!isError) {
+    emit('deleteTaskError', isError)
+  }
+}
 const handleTaskState = (id) => {
   tasksStore.changeTaskComplitedState(id)
   tasksStore.updateDoneTasksCounter()
