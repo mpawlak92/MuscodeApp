@@ -70,8 +70,8 @@ Funkcjonalności ogólne:
 
 Lista ToDo:
 
-- użycie state managera (Pinia) było podyktowane brakiem wystarczającej znajomości freameworka vue, aktualnie zrobiłbym to z wykorzystaniem "event bus", niestety nie wystarczyło czasu na poprawki,
-- z powodu braku czasu na dodanie dodatkowej funkcjonalności, rzeczy związane z accessibility, responsywnością czy walidacją miały większy priorytet,
+- udało się spełnić wszystkie założenia,
+- myslałem że dobrze by było gdybym zrobił liste ToDo z wykorzystaniem "event bus", jednak po dokładniejszym przeananlizowaniu tematu i fakcie że i tak używam w projekcie pini postanowiałem zostać przy wersji ze storem,
 
 Tabela Produktów:
 
