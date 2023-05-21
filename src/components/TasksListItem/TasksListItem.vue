@@ -16,6 +16,13 @@
       aria-label="description of your task todo"
       >{{ props.name }}</label
     >
+    <button
+      v-if="currentTaskState"
+      @click="tasksStore.deleteTask(props.id)"
+      class="tasks-list__delete-btn"
+      tabindex="0"
+      aria-label="button to delete task, press     enter to delete"
+    />
   </li>
 </template>
 
@@ -23,7 +30,7 @@
 import { useTasksStore } from '@/stores/TasksStore'
 
 const tasksStore = useTasksStore()
-
+let currentTaskState = false
 const props = defineProps({
   id: {
     type: Number,
@@ -42,6 +49,7 @@ const props = defineProps({
 const handleTaskState = (id) => {
   tasksStore.changeTaskComplitedState(id)
   tasksStore.updateDoneTasksCounter()
+  currentTaskState = tasksStore.currentTaskState(id)
 }
 </script>
 
@@ -80,6 +88,16 @@ const handleTaskState = (id) => {
     &:checked {
       background-color: var(--color-checkbox-checked);
     }
+  }
+  &__delete-btn {
+    width: 25px;
+    height: 30px;
+    background: none;
+    border: none;
+    background-image: url(../../assets/trash.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 </style>

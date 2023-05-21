@@ -39,24 +39,33 @@ export const useTasksStore = defineStore('tasksStore', {
         }
       })
     },
+    currentTaskState(id) {
+      const task = this.tasks.find((task) => task.id === id)
+      return task.completed
+    },
     updateDoneTasksCounter() {
       let counter = 0
       this.doneTasksCounter = Array.from(this.tasks).forEach((task) => {
         if (task.completed === true) {
-          //   console.log('1')
           counter++
-          //   this.doneTasksCounter++
-          //   console.log(this.doneTasksCounter)
         }
       })
       this.doneTasksCounter = counter
     },
     addNewTask(task) {
+      const id = new Date().getTime()
       this.tasks.push({
-        id: 0,
+        id: id,
         title: task,
         completed: false,
       })
+    },
+    deleteTask(id) {
+      const task = this.tasks.find((task) => task.id === id)
+
+      const taskIndex = this.tasks.indexOf(task)
+      this.tasks.splice(taskIndex, 1)
+      this.doneTasksCounter--
     },
   },
 })
