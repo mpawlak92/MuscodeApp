@@ -1,5 +1,5 @@
 <template>
-  <ModalModel>
+  <ModalModel @keyup.esc="$emit('closeModal')">
     <template #modalContent>
       <div
         class="modal"
@@ -38,6 +38,7 @@
             >
               <strong>{{ error.$message }}</strong>
             </span>
+
             <label class="modal__form-label" for="price">Cena</label>
             <input
               class="modal__form-input"
@@ -53,6 +54,7 @@
             >
               <strong>{{ error.$message }}</strong>
             </span>
+
             <label class="modal__form-label" for="sale-price"
               >Promocyjna cena</label
             >
@@ -70,6 +72,7 @@
             >
               <strong>{{ error.$message }}</strong>
             </span>
+
             <label class="modal__form-label" for="currency">Waluta</label>
             <select
               class="modal__form-input"
@@ -82,9 +85,11 @@
               <option>EUR</option>
             </select>
           </form>
+
           <div v-show="validationError" class="modal__save-error">
             Musisz wypełnic wszystkie pola poprawnie aby zapisać zmiany!
           </div>
+
           <div class="modal__btns">
             <BtnModel
               :content="'Zapisz'"
@@ -110,18 +115,13 @@
 </template>
 
 <script setup>
-import BtnModel from '../BtnModel/BtnModel.vue'
-import ModalModel from '../ModalModel/ModalModel.vue'
 import { useProductsStore } from '@/stores/ProductsStore'
 import { reactive, toRefs } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
-import {
-  helpers,
-  required,
-  integer,
-  minValue,
-  minLength,
-} from '@vuelidate/validators'
+import { helpers, required, minValue, minLength } from '@vuelidate/validators'
+
+import BtnModel from '@/components/BtnModel/BtnModel.vue'
+import ModalModel from '@/components//ModalModel/ModalModel.vue'
 
 const productsStore = useProductsStore()
 
@@ -138,9 +138,11 @@ let productToEdit
 if (productsStore.products[props.productId].id === props.productId) {
   productToEdit = productsStore.products[props.productId]
 }
+
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
 }
+
 const modalData = reactive({
   productName: productToEdit.name,
   producPrice: productToEdit.price,
@@ -148,6 +150,7 @@ const modalData = reactive({
   productCurrency: productToEdit.currency,
   validationError: false,
 })
+
 const {
   productName,
   producPrice,
@@ -157,11 +160,9 @@ const {
 } = toRefs(modalData)
 
 const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
-
 const onlyNumberAllowedREGEXP = /[0-9/]/
 
 const onlyNumberAllowed = (e) => {
-  // Don't validate the input if below arrow, delete and backspace keys were pressed
   if (
     e.keyCode == 37 ||
     e.keyCode == 38 ||
@@ -171,19 +172,18 @@ const onlyNumberAllowed = (e) => {
     e.keyCode == 9 ||
     e.keyCode == 46
   ) {
-    // Left / Up / Right / Down Arrow, Backspace, Delete keys
     return
   }
   if (!onlyNumberAllowedREGEXP.test(e.key)) {
     e.preventDefault()
   }
 }
+
 const rules = {
   productName: { minLength: minLength(3), required },
   producPrice: {
     minLength: minLength(1),
     minValue: minValue(0),
-    integer,
     required,
     priceBiggerThanSalePrice: helpers.withMessage(
       'Price have to be higher than sale price',
@@ -193,7 +193,6 @@ const rules = {
   productSalePrice: {
     minLength: minLength(1),
     minValue: minValue(0),
-    integer,
     required,
   },
 }
@@ -205,13 +204,16 @@ const saveNewProductData = async () => {
   const result = await v$.value.$validate()
   if (result) {
     validationError.value = false
+
     const newProduct = {
       name: productName,
       salePrice: productSalePrice,
       price: producPrice,
       currency: productCurrency,
     }
+
     productsStore.editProduct(newProduct, props.productId)
+
     emit('closeModal')
   } else {
     validationError.value = true
@@ -221,27 +223,27 @@ const saveNewProductData = async () => {
 
 <style lang="scss" scoped>
 .container-for-positioning {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 .modal {
   position: fixed;
-  width: 100%;
-  height: 100vh;
   right: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100vh;
   background-color: var(--color-elements-background);
   &__head {
     display: flex;
     align-items: center;
     width: 100%;
     height: 90px;
+    padding-left: 10px;
     font-size: 0.64rem;
     border-bottom: 4px solid #39428e;
-    padding-left: 10px;
     h1 {
       color: var(--color-heading);
       font-weight: 500;
@@ -251,8 +253,8 @@ const saveNewProductData = async () => {
     display: block;
     width: 32%;
     aspect-ratio: 1/1;
-    border-radius: 50%;
     margin: 30px auto 25px auto;
+    border-radius: 50%;
     box-shadow: 1px 1px 4px 4px var(--color-box-shadow);
   }
   &__form-label,
@@ -269,14 +271,14 @@ const saveNewProductData = async () => {
   }
   &__form-input {
     height: 20px;
-    border: none;
-    border-bottom: 1px solid var(--color-border);
     margin-bottom: 15px;
     margin-top: 8px;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
   }
   &__form-input:focus {
-    outline-color: transparent;
     border-bottom: 2px solid var(--color-border);
+    outline-color: transparent;
   }
   &__form-error,
   &__save-error {
@@ -286,8 +288,8 @@ const saveNewProductData = async () => {
   }
 
   &__form-error {
-    margin: -8px 10px 12px;
     width: calc(100% - 20px);
+    margin: -8px 10px 12px;
   }
   &__save-error {
     width: 60%;
