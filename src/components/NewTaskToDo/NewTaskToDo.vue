@@ -17,8 +17,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import '../../assets/base.css'
-import { useTasksStore } from '../../stores/TasksStore'
+import '@/assets/base.css'
+import { useTasksStore } from '@/stores/TasksStore'
 
 const tasksStore = useTasksStore()
 
@@ -41,9 +41,9 @@ const aproveNewTask = () => {
     align-items: center;
     width: 100%;
     height: 38px;
-    line-height: 40px;
     padding: 0 0 0 13px;
     font-size: 0.83rem;
+    line-height: 40px;
     border: none;
 
     &:focus {
@@ -55,13 +55,13 @@ const aproveNewTask = () => {
   }
   &__placeholder {
     position: absolute;
-    pointer-events: none;
     top: 50%;
     left: 14px;
     transform: translateY(-50%);
-    line-height: 38px;
-    font-size: 0.83rem;
     color: var(--color-text);
+    font-size: 0.83rem;
+    line-height: 38px;
+    pointer-events: none;
 
     span {
       position: relative;

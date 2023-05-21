@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import '../../assets/base.css'
+import '@/assets/base.css'
 
 const props = defineProps({
   cardTitle: {

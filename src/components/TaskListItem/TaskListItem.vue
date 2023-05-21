@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { useTasksStore } from '../../stores/TasksStore'
+import { useTasksStore } from '@/stores/TasksStore'
 
 const tasksStore = useTasksStore()
 
@@ -38,6 +38,7 @@ const props = defineProps({
     reequred: true,
   },
 })
+
 const handleTaskState = (id) => {
   tasksStore.changeTaskComplitedState(id)
   tasksStore.updateDoneTasksCounter()
@@ -58,15 +59,15 @@ const handleTaskState = (id) => {
     cursor: pointer;
   }
   &__checkbox {
-    appearance: none;
     height: 18px;
     width: 19px;
-    padding: 3px 3px;
     margin: 10px 7px 10px 10px;
+    padding: 3px 3px;
     background-color: none;
-    border-radius: 50%;
     border: 1px solid var(--color-border);
+    border-radius: 50%;
     cursor: pointer;
+    appearance: none;
 
     &:checked::after {
       content: url(../../assets/check.svg);

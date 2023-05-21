@@ -9,9 +9,7 @@
 }
 @media (min-width: 1000px) {
   #app {
-    width: 1180px;
     display: grid;
-    margin: 0 20px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto auto;
     gap: 15px 15px;
@@ -19,5 +17,7 @@
     align-items: stretch;
     justify-content: stretch;
     align-content: start;
+    width: 1180px;
+    margin: 0 20px;
   }
 }

@@ -9,6 +9,7 @@
         Wykonane: {{ tasksStore.doneTasksCounter }}
       </p>
     </template>
+
     <template #card-content>
       <TaskList />
       <NewTaskToDo />
@@ -17,13 +18,13 @@
 </template>
 
 <script setup>
-import '../../assets/base.css'
+import { useTasksStore } from '@/stores/TasksStore'
+
+import '@assets/base.css'
 
 import CardModel from '@/components/CardModel/CardModel.vue'
 import NewTaskToDo from '@/components/NewTaskToDo/NewTaskToDo.vue'
 import TaskList from '@/components/TaskList/TaskList.vue'
-
-import { useTasksStore } from '../../stores/TasksStore'
 
 const tasksStore = useTasksStore()
 </script>
@@ -37,8 +38,8 @@ const tasksStore = useTasksStore()
 }
 .todo-list-heading {
   color: var(--color-heading);
-  font-weight: 500;
   font-size: 1rem;
+  font-weight: 500;
 }
 @media (min-width: 1000px) {
   .card-model-position {

@@ -11,8 +11,9 @@
 </template>
 
 <script setup>
-import TaskListItem from '../TaskListItem/TaskListItem.vue'
-import { useTasksStore } from '../../stores/TasksStore'
+import { useTasksStore } from '@/stores/TasksStore'
+
+import TaskListItem from '@/components//TaskListItem/TaskListItem.vue'
 
 const tasksStore = useTasksStore()
 </script>
@@ -23,5 +24,4 @@ const tasksStore = useTasksStore()
   padding: 0;
   list-style: none;
 }
-
 </style>

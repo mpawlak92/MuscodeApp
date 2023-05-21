@@ -67,10 +67,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import ProductEditModal from '../ProductEditModal/ProductEditModal.vue'
-import '../../assets/base.css'
-import CardModel from '../CardModel/CardModel.vue'
 import { useProductsStore } from '@/stores/ProductsStore'
+
+import '@/assets/base.css'
+
+import CardModel from '@/components/CardModel/CardModel.vue'
+import ProductEditModal from '@/components/ProductEditModal/ProductEditModal.vue'
 
 const productsStore = useProductsStore()
 
@@ -91,8 +93,8 @@ function toggleModalState(id) {
   position: relative;
   width: 100%;
   max-width: 400px;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
   transition: scale 0.5s;
 
   &:hover {
@@ -101,13 +103,13 @@ function toggleModalState(id) {
 
   &__sash {
     display: none;
+    justify-content: center;
     position: absolute;
     right: -12%;
     top: 8%;
-    justify-content: center;
-    padding-top: 2px;
     width: 170px;
     height: 19px;
+    padding-top: 2px;
     color: #fff;
     font-size: 0.75rem;
     font-weight: 500;
@@ -122,9 +124,9 @@ function toggleModalState(id) {
   }
   &__sale-price {
     text-align: center;
+    color: var(--color-btn);
     font-size: 1rem;
     font-weight: bold;
-    color: var(--color-btn);
   }
   &__price {
     text-align: center;

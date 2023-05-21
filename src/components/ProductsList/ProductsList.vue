@@ -109,10 +109,11 @@
 </template>
 
 <script setup>
-import '../../assets/base.css'
-import CardModel from '../CardModel/CardModel.vue'
+import { useProductsStore } from '@/stores/ProductsStore'
 
-import { useProductsStore } from '../../stores/ProductsStore'
+import '@/assets/base.css'
+
+import CardModel from '@/components/CardModel/CardModel.vue'
 
 const productsStore = useProductsStore()
 </script>
@@ -124,8 +125,8 @@ const productsStore = useProductsStore()
 .product-table {
   width: 100%;
   margin: 12px 0;
-  border-collapse: collapse;
   font-size: 0.78rem;
+  border-collapse: collapse;
 
   tr {
     border-bottom: 1px solid var(--color-border);
@@ -145,10 +146,9 @@ const productsStore = useProductsStore()
     text-align: left;
   }
   thead tr > * {
-    text-transform: uppercase;
     font-size: 0.71rem;
     font-weight: 500;
-    // letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   &__id {
@@ -176,9 +176,9 @@ const productsStore = useProductsStore()
 }
 @media (min-width: 660px) {
   .card-model-position {
+    display: block;
     grid-column: 2/ 4;
     grid-row: 2 / 3;
-    display: block;
   }
 }
 </style>
