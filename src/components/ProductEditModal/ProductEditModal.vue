@@ -27,6 +27,7 @@
             >
             <input
               class="modal__form-input"
+              ref="productNameInput"
               type="text"
               id="product-name"
               v-model="productName"
@@ -116,7 +117,7 @@
 
 <script setup>
 import { useProductsStore } from '@/stores/ProductsStore'
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, ref, onMounted } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { helpers, required, minValue, minLength } from '@vuelidate/validators'
 
@@ -129,6 +130,11 @@ const props = defineProps({
   productId: {
     type: Number,
   },
+})
+
+const productNameInput = ref(null)
+onMounted(() => {
+  productNameInput.value.focus()
 })
 
 const emit = defineEmits(['closeModal'])
