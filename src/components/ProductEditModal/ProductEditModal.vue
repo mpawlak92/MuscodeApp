@@ -119,7 +119,7 @@
 import { useProductsStore } from '@/stores/ProductsStore'
 import { reactive, toRefs, ref, onMounted } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
-import { helpers, required, minValue, minLength } from '@vuelidate/validators'
+import { helpers, required, minLength } from '@vuelidate/validators'
 
 import BtnModel from '@/components/BtnModel/BtnModel.vue'
 import ModalModel from '@/components//ModalModel/ModalModel.vue'
@@ -186,20 +186,22 @@ const onlyNumberAllowed = (e) => {
 }
 
 const rules = {
-  productName: { minLength: minLength(3), required },
+  productName: {
+    minLength: helpers.withMessage(
+      'Minimalna długość nazwy to 3 znaki',
+      minLength(3)
+    ),
+    required: helpers.withMessage('Pole nie może być puste', required),
+  },
   producPrice: {
-    minLength: minLength(1),
-    minValue: minValue(0),
-    required,
+    required: helpers.withMessage('Pole nie może być puste', required),
     priceBiggerThanSalePrice: helpers.withMessage(
-      'Price have to be higher than sale price',
+      'Cena promocyjna nie może przekraczać wartości podstawowej ceny produktu',
       priceBiggerThanSalePrice
     ),
   },
   productSalePrice: {
-    minLength: minLength(1),
-    minValue: minValue(0),
-    required,
+    required: helpers.withMessage('Pole nie może być puste', required),
   },
 }
 
