@@ -41,10 +41,6 @@ export const useTasksStore = defineStore('tasksStore', {
         }
       })
     },
-    currentTaskState(id) {
-      const task = this.tasks.find((task) => task.id === id)
-      return task.completed
-    },
     updateDoneTasksCounter() {
       let counter = 0
       this.doneTasksCounter = Array.from(this.tasks).forEach((task) => {
@@ -69,6 +65,14 @@ export const useTasksStore = defineStore('tasksStore', {
       this.tasks.splice(taskIndex, 1)
       this.doneTasksCounter--
       return true
+    },
+  },
+  getters: {
+    currentTaskState: (state) => {
+      return (id) => {
+        const task = state.tasks.find((task) => task.id === id)
+        return task.completed
+      }
     },
   },
 })
