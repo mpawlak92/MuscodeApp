@@ -1,8 +1,8 @@
 <template>
   <li class="tasks-list__task">
     <input
-      @click.self="handleTaskState(props.id)"
       type="checkbox"
+      @click.self="handleTaskState(props.id)"
       :checked="props.completed"
       :id="'task_' + props.id"
       class="tasks-list__checkbox"
@@ -12,6 +12,7 @@
     <label
       :for="'task_' + props.id"
       class="tasks-list__label"
+      :class="{ 'tasks-list__done-task': currentTaskState }"
       tabindex="0"
       aria-label="description of your task todo"
       >{{ props.name }}</label
@@ -21,7 +22,7 @@
       @click="deleteTask(props.id)"
       class="tasks-list__delete-btn"
       tabindex="0"
-      aria-label="button to delete task, press     enter to delete"
+      aria-label="button to delete task, press enter to delete"
     />
   </li>
 </template>
@@ -66,6 +67,7 @@ const handleTaskState = (id) => {
 <style lang="scss" scoped>
 .tasks-list {
   &__task {
+    width: 95%;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--color-border);
@@ -75,6 +77,9 @@ const handleTaskState = (id) => {
     padding-bottom: 2px;
     font-size: 0.83rem;
     cursor: pointer;
+  }
+  &__done-task {
+    text-decoration: line-through;
   }
   &__checkbox {
     height: 18px;
@@ -96,18 +101,27 @@ const handleTaskState = (id) => {
       background-color: var(--color-background);
     }
     &:checked {
-      background-color: var(--color-checkbox-checked);
+      // background-color: var(--color-checkbox-checked);
+      border: 1px solid var(--color-checkbox-checked);
     }
   }
+
   &__delete-btn {
-    width: 25px;
-    height: 30px;
-    background: none;
+    width: 20px;
+    height: 25px;
+    margin-left: 5px;
     border: none;
+    background: none;
     background-image: url(../../assets/trash.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 }
 </style>
