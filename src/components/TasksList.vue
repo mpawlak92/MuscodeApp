@@ -40,7 +40,7 @@ const showError = () => {
   font-weight: bold;
 }
 .tasks-list {
-  max-height: 194px;
+  max-height: 195px;
   margin: 15px 0 0 0;
   padding: 0;
   list-style: none;
@@ -48,7 +48,7 @@ const showError = () => {
   overflow-x: hidden;
 
   /* ===== Scrollbar CSS ===== */
-  /* Firefox */
+
   & {
     scrollbar-width: auto;
     scrollbar-color: #862583 #f9e7f8;
