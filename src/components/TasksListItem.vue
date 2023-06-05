@@ -112,7 +112,7 @@ const handleTaskState = (id) => {
     margin-left: 5px;
     border: none;
     background: none;
-    background-image: url(../../assets/trash.svg);
+    background-image: url(../assets/trash.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
