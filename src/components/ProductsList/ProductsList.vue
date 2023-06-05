@@ -2,7 +2,7 @@
   <CardModel
     class="card-model-position"
     cardTitle="Lista Produktów"
-    carddescription="table with products list"
+    cardDescription="table with products list"
   >
     <template #card-content>
       <table class="product-table">
