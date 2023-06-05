@@ -1,9 +1,9 @@
 <template>
   <div class="new-task">
     <input
-      @keyup.enter="aproveNewTask"
       type="text"
       class="new-task__input"
+      @keyup.enter="aproveNewTask"
       v-model="newTaskValue"
       required
       id="newTask"
@@ -13,6 +13,7 @@
       <span>+</span> Dodaj nowy element checklisty
     </label>
   </div>
+  <div class="task-error">{{ newTaskError }}</div>
 </template>
 
 <script setup>
@@ -23,10 +24,30 @@ import { useTasksStore } from '@/stores/TasksStore'
 const tasksStore = useTasksStore()
 
 const newTaskValue = ref('')
+const newTaskError = ref('')
 
+const newTaskValidation = (newTaskValue) => {
+  if (newTaskValue === '') {
+    return 'Pole nie może byc puste'
+  } else if (newTaskValue.length < 3) {
+    return 'Nowy task musi mieć co najmniej 3 znaki'
+  } else {
+    return true
+  }
+}
 const aproveNewTask = () => {
-  tasksStore.addNewTask(newTaskValue.value)
-  newTaskValue.value = ''
+  newTaskError.value = ''
+  const validationValue = newTaskValidation(newTaskValue.value)
+  if (validationValue === true) {
+    tasksStore.addNewTask(newTaskValue.value)
+    newTaskValue.value = ''
+  } else {
+    newTaskError.value = validationValue
+
+    setTimeout(() => {
+      newTaskError.value = ''
+    }, 5000)
+  }
 }
 </script>
 
@@ -71,5 +92,10 @@ const aproveNewTask = () => {
       opacity: 0.6;
     }
   }
+}
+.task-error {
+  margin: 0 auto;
+  padding-top: 10px;
+  color: red;
 }
 </style>
