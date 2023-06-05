@@ -21,7 +21,7 @@
         />
 
         <div class="container-for-positioning">
-          <form action="">
+          <form>
             <label class="modal__form-label" for="product-name"
               >Nazwa produktu</label
             >
@@ -135,18 +135,20 @@ const props = defineProps({
   },
 })
 
+let productToEdit
+
+;(function setProductToEditIfExist() {
+  if (productsStore.products[props.productId].id === props.productId) {
+    productToEdit = productsStore.products[props.productId]
+  }
+})()
+
 const productNameInput = ref(null)
 onMounted(() => {
   productNameInput.value.focus()
 })
 
 const emit = defineEmits(['closeModal'])
-
-let productToEdit
-
-if (productsStore.products[props.productId].id === props.productId) {
-  productToEdit = productsStore.products[props.productId]
-}
 
 const getImageUrl = (assetName) => {
   return new URL(`../../assets/${assetName}.png`, import.meta.url).href
