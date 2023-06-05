@@ -12,7 +12,6 @@
   "dependencies": {
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
-    "node-sass": "^8.0.0",
     "pinia": "^2.0.36",
     "vue": "^3.3.2"
   },
@@ -22,6 +21,7 @@
     "@vue/eslint-config-prettier": "^7.1.0",
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.11.0",
+    "node-sass": "^9.0.0",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
