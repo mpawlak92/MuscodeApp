@@ -10,6 +10,7 @@
           class="modal__head"
           tabindex="0"
           aria-label="Name of editing product"
+          ref="productNameInput"
         >
           <h1>Edycja produktu: {{ productToEdit.name }}</h1>
         </div>
@@ -22,14 +23,11 @@
 
         <div class="container-for-positioning">
           <form>
-            <label class="modal__form-label" for="product-name"
-              >Nazwa produktu</label
-            >
-            <input
-              class="modal__form-input"
-              ref="productNameInput"
-              type="text"
-              id="product-name"
+            <InputModel
+              labelName="Nazwa produktu"
+              inputType="text"
+              inputId="product-name"
+              inputAllocation="modal"
               v-model="productName"
             />
             <span
@@ -40,13 +38,12 @@
               <strong>{{ error.$message }}</strong>
             </span>
 
-            <label class="modal__form-label" for="price">Cena</label>
-            <input
-              class="modal__form-input"
-              type="number"
-              id="price"
+            <InputModel
+              labelName="Cena"
+              inputType="number"
+              inputId="price"
+              inputAllocation="modal"
               v-model="producPrice"
-              @keydown="validationNumberInput"
             />
             <span
               class="modal__form-error"
@@ -56,15 +53,12 @@
               <strong>{{ error.$message }}</strong>
             </span>
 
-            <label class="modal__form-label" for="sale-price"
-              >Promocyjna cena</label
-            >
-            <input
-              class="modal__form-input"
-              type="number"
-              id="sale-price"
+            <InputModel
+              labelName="Promocyjna cena"
+              inputType="number"
+              inputId="sale-price"
+              inputAllocation="modal"
               v-model="productSalePrice"
-              @keydown="validationNumberInput"
             />
             <span
               class="modal__form-error"
@@ -120,12 +114,13 @@
 
 <script setup>
 import { useProductsStore } from '@/stores/ProductsStore'
-import { reactive, toRefs, ref, onMounted } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { helpers, required, minLength, maxLength } from '@vuelidate/validators'
 
 import BtnModel from '@/components/BtnModel.vue'
 import ModalModel from '@/components/ModalModel.vue'
+import InputModel from './InputModel.vue'
 
 const productsStore = useProductsStore()
 
@@ -172,24 +167,6 @@ const {
 } = toRefs(modalData)
 
 const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
-const onlyNumberAllowedREGEXP = /[0-9/]/
-
-const validationNumberInput = (e) => {
-  if (
-    e.keyCode == 37 ||
-    e.keyCode == 38 ||
-    e.keyCode == 39 ||
-    e.keyCode == 40 ||
-    e.keyCode == 8 ||
-    e.keyCode == 9 ||
-    e.keyCode == 46
-  ) {
-    return
-  }
-  if (!onlyNumberAllowedREGEXP.test(e.key)) {
-    e.preventDefault()
-  }
-}
 
 const rules = {
   productName: {
