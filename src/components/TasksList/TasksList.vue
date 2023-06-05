@@ -40,8 +40,33 @@ const showError = () => {
   font-weight: bold;
 }
 .tasks-list {
+  max-height: 194px;
   margin: 15px 0 0 0;
   padding: 0;
   list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  & {
+    scrollbar-width: auto;
+    scrollbar-color: #862583 #f9e7f8;
+  }
+
+  /* Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f9e7f8;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #862583;
+    border-radius: 10px;
+    border: 3px solid #a352a0;
+  }
 }
 </style>
