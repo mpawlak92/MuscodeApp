@@ -46,7 +46,7 @@
               type="number"
               id="price"
               v-model="producPrice"
-              @keydown="onlyNumberAllowed"
+              @keydown="validationNumberInput"
             />
             <span
               class="modal__form-error"
@@ -64,7 +64,7 @@
               type="number"
               id="sale-price"
               v-model="productSalePrice"
-              @keydown="onlyNumberAllowed"
+              @keydown="validationNumberInput"
             />
             <span
               class="modal__form-error"
@@ -124,8 +124,8 @@ import { reactive, toRefs, ref, onMounted } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { helpers, required, minLength, maxLength } from '@vuelidate/validators'
 
-import BtnModel from '@/components/BtnModel/BtnModel.vue'
-import ModalModel from '@/components//ModalModel/ModalModel.vue'
+import BtnModel from '@/components/BtnModel.vue'
+import ModalModel from '@/components/ModalModel.vue'
 
 const productsStore = useProductsStore()
 
@@ -136,7 +136,6 @@ const props = defineProps({
 })
 
 let productToEdit
-
 ;(function setProductToEditIfExist() {
   if (productsStore.products[props.productId].id === props.productId) {
     productToEdit = productsStore.products[props.productId]
@@ -151,7 +150,7 @@ onMounted(() => {
 const emit = defineEmits(['closeModal'])
 
 const getImageUrl = (assetName) => {
-  return new URL(`../../assets/${assetName}.png`, import.meta.url).href
+  return new URL(`../assets/${assetName}.png`, import.meta.url).href
 }
 
 const modalData = reactive({
@@ -175,7 +174,7 @@ const {
 const priceBiggerThanSalePrice = (value) => value >= productSalePrice.value
 const onlyNumberAllowedREGEXP = /[0-9/]/
 
-const onlyNumberAllowed = (e) => {
+const validationNumberInput = (e) => {
   if (
     e.keyCode == 37 ||
     e.keyCode == 38 ||

@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 import { useTasksStore } from '@/stores/TasksStore'
 
-import TasksListItem from '@/components//TasksListItem/TasksListItem.vue'
+import TasksListItem from '@/components/TasksListItem.vue'
 
 const isError = ref(false)
 

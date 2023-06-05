@@ -22,9 +22,9 @@ import { useTasksStore } from '@/stores/TasksStore'
 
 import '@/assets/base.css'
 
-import CardModel from '@/components/CardModel/CardModel.vue'
-import NewTaskToDo from '@/components/NewTaskToDo/NewTaskToDo.vue'
-import TasksList from '@/components/TasksList/TasksList.vue'
+import CardModel from '@/components/CardModel.vue'
+import NewTaskToDo from '@/components/NewTaskToDo.vue'
+import TasksList from '@/components/TasksList.vue'
 
 const tasksStore = useTasksStore()
 </script>

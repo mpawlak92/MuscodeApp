@@ -64,8 +64,8 @@ import { useProductsStore } from '@/stores/ProductsStore'
 
 import '@/assets/base.css'
 
-import CardModel from '@/components/CardModel/CardModel.vue'
-import ProductEditModal from '@/components/ProductEditModal/ProductEditModal.vue'
+import CardModel from '@/components/CardModel.vue'
+import ProductEditModal from '@/components/ProductEditModal.vue'
 
 const productsStore = useProductsStore()
 
@@ -77,7 +77,7 @@ const showDiscountPercent = (salePrice, price) => {
 }
 
 const getImageUrl = (assetName) => {
-  return new URL(`../../assets/${assetName}.png`, import.meta.url).href
+  return new URL(`../assets/${assetName}.png`, import.meta.url).href
 }
 
 const showProductSalePrice = (salePrice, price, currency) => {

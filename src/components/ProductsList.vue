@@ -113,7 +113,7 @@ import { useProductsStore } from '@/stores/ProductsStore'
 
 import '@/assets/base.css'
 
-import CardModel from '@/components/CardModel/CardModel.vue'
+import CardModel from '@/components/CardModel.vue'
 
 const productsStore = useProductsStore()
 </script>

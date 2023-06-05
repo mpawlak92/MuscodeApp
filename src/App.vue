@@ -9,9 +9,9 @@
 
 <script setup>
 import '@/assets/base.css'
-import ProductsCards from '@/components/ProductsCards/ProductsCards.vue'
-import ProductsList from '@/components/ProductsList/ProductsList.vue'
-import ToDoList from '@/components/ToDoList/TodoList.vue'
+import ProductsCards from '@/components/ProductsCards.vue'
+import ProductsList from '@/components/ProductsList.vue'
+import ToDoList from '@/components/TodoList.vue'
 </script>
 
 <style lang="scss" scoped>
