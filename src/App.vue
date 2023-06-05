@@ -4,12 +4,12 @@
   </div>
   <ToDoList />
   <ProductsList />
-  <ProductCard />
+  <ProductsCards />
 </template>
 
 <script setup>
 import '@/assets/base.css'
-import ProductCard from '@/components/ProductCard/ProductCard.vue'
+import ProductsCards from '@/components/ProductsCards/ProductsCards.vue'
 import ProductsList from '@/components/ProductsList/ProductsList.vue'
 import ToDoList from '@/components/ToDoList/TodoList.vue'
 </script>

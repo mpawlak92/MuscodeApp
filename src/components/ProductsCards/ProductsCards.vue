@@ -22,7 +22,7 @@
         role="img"
       />
 
-      <p>{{ isModalVisible }}</p>
+      <!-- <p>{{ isModalVisible }}</p> -->
       <div
         class="product-card__sale-price"
         tabindex="0"
@@ -70,7 +70,15 @@ import ProductEditModal from '@/components/ProductEditModal/ProductEditModal.vue
 const productsStore = useProductsStore()
 
 const modalIsActive = ref(false)
-const productId = ref(0)
+const productId = ref(null)
+
+const showDiscountPercent = (salePrice, price) => {
+  return (-((price - salePrice) / price) * 100).toFixed(0) + '%'
+}
+
+const getImageUrl = (assetName) => {
+  return new URL(`../../assets/${assetName}.png`, import.meta.url).href
+}
 
 const showProductSalePrice = (salePrice, price, currency) => {
   if (salePrice === 0 && price === 0) {
@@ -90,12 +98,6 @@ const showProductPrice = (salePrice, price, currency) => {
   }
 }
 
-const showDiscountPercent = (salePrice, price) => {
-  return (-((price - salePrice) / price) * 100).toFixed(0) + '%'
-}
-const getImageUrl = (assetName) => {
-  return new URL(`../../assets/${assetName}.png`, import.meta.url).href
-}
 function toggleModalState(id) {
   productId.value = id
   modalIsActive.value = !modalIsActive.value
