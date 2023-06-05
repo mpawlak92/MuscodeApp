@@ -93,7 +93,7 @@ const handleTaskState = (id) => {
     appearance: none;
 
     &:checked::after {
-      content: url(../../assets/check.svg);
+      content: url(../assets/check.svg);
       display: block;
       margin-top: -1px;
     }
